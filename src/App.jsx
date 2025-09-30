@@ -6,6 +6,9 @@ function App() {
   const[isResultShown, setIsResultShown] = useState(false);
 
   const handleNumberClick = (value) => {
+    if(output === '' && value === '00')
+      return;
+    
     if(isResultShown)
     {
         setOutput(value)
@@ -18,6 +21,9 @@ function App() {
   }
 
   const handleOperatorClick = (value) => {
+    if(output === '' && (value === '+' || value === '*' || value === '/' || value === '%'))
+      return;
+
     if(isResultShown)
     {
       setOutput(prev => prev + value)
@@ -26,15 +32,18 @@ function App() {
     else
     {
       setOutput(prevOutput => prevOutput + value);
+      setIsResultShown(false)
     }
   }
 
   const dltAll = () => {
     setOutput('')
+    setIsResultShown(false)
   }
 
   const dlt = () => {
     setOutput(output.slice(0, -1))
+    setIsResultShown(false)
   }     
 
   const result = () => {
@@ -111,7 +120,7 @@ function App() {
              onClick={() => handleNumberClick('0')}
             >0</span>
             <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => handleOperatorClick('.')}
+             onClick={() => handleNumberClick('.')}
             >.</span>
             <span className='h-[70px] w-[70px] text-3xl rounded-full text-white font-semibold bg-orange-500 flex justify-center items-center cursor-pointer'
             onClick={result}
