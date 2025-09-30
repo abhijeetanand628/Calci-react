@@ -3,6 +3,27 @@ import './App.css'
 
 function App() {
   const[output, setOutput] = useState('');
+  const[isResultShown, setIsResultShown] = useState(false);
+
+  const handleNumberClick = (value) => {
+    if(isResultShown)
+    {
+        setOutput(value)
+        setIsResultShown(false);
+    }
+    else
+    {
+      setOutput(prevOutput =>  prevOutput + value);
+    }
+  }
+
+  const handleOperatorClick = (value) => {
+    if(isResultShown)
+    {
+      setOutput(value)
+      setIsResultShown(true)
+    }
+  }
 
   const dltAll = () => {
     setOutput('')
@@ -10,12 +31,14 @@ function App() {
 
   const dlt = () => {
     setOutput(output.slice(0, -1))
-  }
+  }     
 
   const result = () => {
     try {
       const finalResult = eval(output).toString();
       setOutput(finalResult)
+      setIsResultShown(true)
+      // setOutput('')
     } catch (error) {
       setOutput('Error')
     }
@@ -23,70 +46,70 @@ function App() {
 
   return (
     <>
-      <div className='w-full h-screen bg-black justify-center flex items-center min-h-screen'>
-        <div className='p-5 h-[490px] w-[380px] rounded-xl bg-gray-300'>
-          <div className='h-[60px] w-full bg-white focus:outline-none rounded-xl flex items-center font-semibold text-3xl p-2 justify-end'>
+      <div className='w-full h-screen bg-green-500 justify-center flex items-center min-h-screen'>
+        <div className='p-5 h-[490px] w-[350px] rounded-xl bg-black'>
+          <div className='h-[60px] w-full bg-gray-300 focus:outline-none rounded-xl flex items-center font-semibold text-3xl p-2 justify-end'>
             {output}  
           </div>
-          <div className='text-black grid grid-cols-4 grid-rows-5 text-3xl gap-y-2 my-3 items-center jutsify-center'>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
+          <div className='text-black grid grid-cols-4 grid-rows-5 text-3xl gap-y-2 gap-x-5 my-3 items-center jutsify-center'>
+            <span className='h-[70px] w-[70px] text-xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
             onClick={dltAll}
             >AC</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
+            <span className='h-[70px] w-[70px] text-xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
             onClick={dlt}
             >C</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={() => setOutput(prevOutput => prevOutput + '%')}
+            <span className='h-[70px] w-[70px] text-xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
+            onClick={() => handleNumberClick('%')}
             >%</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={() => setOutput(prevOutput => prevOutput + '/')}
+            <span className='h-[70px] w-[70px] text-3xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
+            onClick={() => handleNumberClick('/')}
             >÷</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-            onClick={() => setOutput(prevOutput => prevOutput + 7)}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+            onClick={() => handleNumberClick('7')}
             >7</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-            onClick={() => setOutput(prevOutput => prevOutput + 8)}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+            onClick={() => handleNumberClick('8')}
             >8</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => setOutput(prevOutput => prevOutput + 9)}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+             onClick={() => handleNumberClick('9')}
             >9</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={() => setOutput(prevOutput => prevOutput + '*')}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
+            onClick={() => handleNumberClick('*')}
             >×</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => setOutput(prevOutput => prevOutput + 4)}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+             onClick={() => handleNumberClick('4')}
             >4</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => setOutput(prevOutput => prevOutput + 5)}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+             onClick={() => handleNumberClick('5')}
             >5</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => setOutput(prevOutput => prevOutput + 6)}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+             onClick={() => handleNumberClick('6')}
             >6</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={() => setOutput(prevOutput => prevOutput + '-')}
+            <span className='h-[70px] w-[70px] text-3xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
+            onClick={() => handleNumberClick('-')}
             >-</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => setOutput(prevOutput => prevOutput + 1)}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+             onClick={() => handleNumberClick('1')}
             >1</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => setOutput(prevOutput => prevOutput + 2)}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+             onClick={() => handleNumberClick('2')}
             >2</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => setOutput(prevOutput => prevOutput + 3)}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+             onClick={() => handleNumberClick('3')}
             >3</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={() => setOutput(prevOutput => prevOutput + '+')}
+            <span className='h-[70px] w-[70px] text-3xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
+            onClick={() => handleNumberClick('+')}
             >+</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => setOutput(prevOutput => prevOutput + '00')}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+             onClick={() => handleNumberClick('00')}
             >00</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => setOutput(prevOutput => prevOutput + 0)}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+             onClick={() => handleNumberClick('0')}
             >0</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => setOutput(prevOutput => prevOutput + '.')}
+            <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
+             onClick={() => handleNumberClick('.')}
             >.</span>
-            <span className='h-[70px] w-[70px] rounded-full text-white font-semibold bg-orange-500 flex justify-center items-center cursor-pointer'
+            <span className='h-[70px] w-[70px] text-3xl rounded-full text-white font-semibold bg-orange-500 flex justify-center items-center cursor-pointer'
             onClick={result}
             >=</span>
           </div>
