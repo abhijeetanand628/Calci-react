@@ -13,15 +13,19 @@ function App() {
     }
     else
     {
-      setOutput(prevOutput =>  prevOutput + value);
+      setOutput(prevOutput => prevOutput + value);
     }
   }
 
   const handleOperatorClick = (value) => {
     if(isResultShown)
     {
-      setOutput(value)
-      setIsResultShown(true)
+      setOutput(prev => prev + value)
+      setIsResultShown(false)
+    }
+    else
+    {
+      setOutput(prevOutput => prevOutput + value);
     }
   }
 
@@ -59,10 +63,10 @@ function App() {
             onClick={dlt}
             >C</span>
             <span className='h-[70px] w-[70px] text-xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={() => handleNumberClick('%')}
+            onClick={() => handleOperatorClick('%')}
             >%</span>
             <span className='h-[70px] w-[70px] text-3xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={() => handleNumberClick('/')}
+            onClick={() => handleOperatorClick('/')}
             >÷</span>
             <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
             onClick={() => handleNumberClick('7')}
@@ -74,7 +78,7 @@ function App() {
              onClick={() => handleNumberClick('9')}
             >9</span>
             <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={() => handleNumberClick('*')}
+            onClick={() => handleOperatorClick('*')}
             >×</span>
             <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
              onClick={() => handleNumberClick('4')}
@@ -86,7 +90,7 @@ function App() {
              onClick={() => handleNumberClick('6')}
             >6</span>
             <span className='h-[70px] w-[70px] text-3xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={() => handleNumberClick('-')}
+            onClick={() => handleOperatorClick('-')}
             >-</span>
             <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
              onClick={() => handleNumberClick('1')}
@@ -98,7 +102,7 @@ function App() {
              onClick={() => handleNumberClick('3')}
             >3</span>
             <span className='h-[70px] w-[70px] text-3xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={() => handleNumberClick('+')}
+            onClick={() => handleOperatorClick('+')}
             >+</span>
             <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
              onClick={() => handleNumberClick('00')}
@@ -107,7 +111,7 @@ function App() {
              onClick={() => handleNumberClick('0')}
             >0</span>
             <span className='h-[70px] w-[70px] text-2xl rounded-full text-white font-semibold bg-[#414141] flex justify-center items-center cursor-pointer'
-             onClick={() => handleNumberClick('.')}
+             onClick={() => handleOperatorClick('.')}
             >.</span>
             <span className='h-[70px] w-[70px] text-3xl rounded-full text-white font-semibold bg-orange-500 flex justify-center items-center cursor-pointer'
             onClick={result}
