@@ -6,7 +6,7 @@ function App() {
   const[isResultShown, setIsResultShown] = useState(false);
 
   const handleNumberClick = (value) => {
-    if(output === '' && value === '00')
+    if((output === '' || output === '0') && value === '00')
       return;
     
     if(isResultShown)
