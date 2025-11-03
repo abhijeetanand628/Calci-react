@@ -36,12 +36,12 @@ function App() {
     }
   }
 
-  const dltAll = () => {
+  const AC = () => {
     setOutput('')
     setIsResultShown(false)
   }
 
-  const dlt = () => {
+  const C = () => {
     setOutput(output.slice(0, -1))
     setIsResultShown(false)
   }     
@@ -51,7 +51,6 @@ function App() {
       const finalResult = eval(output).toString();
       setOutput(finalResult)
       setIsResultShown(true)
-      // setOutput('')
     } catch (error) {
       setOutput('Error')
     }
@@ -61,15 +60,15 @@ function App() {
     <>
       <div className='w-full h-screen bg-green-500 justify-center flex items-center min-h-screen'>
         <div className='p-5 h-[490px] w-[350px] rounded-xl bg-black'>
-          <div className='h-[60px] w-full bg-gray-300 focus:outline-none rounded-xl flex items-center font-semibold text-3xl p-2 justify-end'>
+          <div className='h-[60px] w-full bg-gray-300 focus:outline-none rounded-xl flex items-center font-semibold text-3xl p-2 justify-end overflow-x-auto whitespace-nowrap'>
             {output}  
           </div>
           <div className='text-black grid grid-cols-4 grid-rows-5 text-3xl gap-y-2 gap-x-5 my-3 items-center jutsify-center'>
             <span className='h-[70px] w-[70px] text-xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={dltAll}
+            onClick={AC}
             >AC</span>
             <span className='h-[70px] w-[70px] text-xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
-            onClick={dlt}
+            onClick={C}
             >C</span>
             <span className='h-[70px] w-[70px] text-xl rounded-full text-white font-semibold bg-[#212121] flex justify-center items-center cursor-pointer'
             onClick={() => handleOperatorClick('%')}
